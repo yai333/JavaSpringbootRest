@@ -1,0 +1,22 @@
+INFO main com.example.awesomeprject.UserControllerTest - Should add a new user
+INFO main com.example.awesomeprject.UserControllerTest - [com.example.awesomeprject.User@34588991]
+INFO main com.example.awesomeprject.UserControllerTest - Should return all users
+INFO main com.example.awesomeprject.UserControllerTest - [{"firstName":"yi","lastName":"ai"}]
+INFO main com.example.awesomeprject.UserControllerTest - Should add a new user
+INFO main com.example.awesomeprject.UserControllerTest - tom
+INFO main com.example.awesomeprject.UserControllerTest - Should return all users
+INFO main com.example.awesomeprject.UserControllerTest - [{"firstName":"yi","lastName":"ai"}]
+INFO main com.example.awesomeprject.UserControllerTest - Should add a new user
+INFO main com.example.awesomeprject.UserControllerTest - [com.example.awesomeprject.User@34588991]
+INFO main com.example.awesomeprject.UserControllerTest - Should return all users
+INFO main com.example.awesomeprject.UserControllerTest - [{"firstName":"yi","lastName":"ai"}]
+INFO main com.example.awesomeprject.UserControllerTest - Should add a new user
+INFO main com.example.awesomeprject.UserControllerTest - com.example.awesomeprject.User@5e25085
+INFO main com.example.awesomeprject.UserControllerTest - Should return all users
+INFO main com.example.awesomeprject.UserControllerTest - [{"firstName":"yi","lastName":"ai"}]
+INFO main com.example.awesomeprject.UserControllerTest - Should add a new user
+INFO main com.example.awesomeprject.UserControllerTest - Should return all users
+INFO main com.example.awesomeprject.UserControllerTest - org.springframework.mock.web.MockHttpServletResponse@2262bc86
+INFO main com.example.awesomeprject.UserControllerTest - Should add a new user
+INFO main com.example.awesomeprject.UserControllerTest - Should return all users
+INFO main com.example.awesomeprject.UserControllerTest - [{"firstName":"yi","lastName":"ai"}]
