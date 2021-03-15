@@ -1,0 +1,22 @@
+version: '2'
+
+services:
+  app:
+    container_name: app
+    ports:
+      - '80:8080'
+    depends_on:
+      - db
+    build:
+      context: .
+    environment:
+      - DATASOURCE_URL=jdbc:postgresql://db:5432/compose-postgres
+      - DATASOURCE_USERNAME=compose-postgres
+      - DATASOURCE_PASSWORD=compose-postgres
+
+  db:
+    image: 'postgres:13.1-alpine'
+    container_name: db
+    environment:
+      - POSTGRES_USER=compose-postgres
+      - POSTGRES_PASSWORD=compose-postgres
