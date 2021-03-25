@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-deployment
+  labels:
+    app: demo
+spec:
+  selector:
+    matchLabels:
+      app: demo
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: demo
+        aadpodidbinding: my-sp-pod-identity
+    spec:
+      containers:
+        - image: myspdemo2021.azurecr.io/awesomeprject:latest
+          name: demo
+          ports:
+            - containerPort: 8080
+          env:
+            - name: DB_SCHEMA
+              valueFrom:
+                configMapKeyRef:
+                  name: sp-config
+                  key: DB_SCHEMA
+            - name: DB_DATA
+              valueFrom:
+                configMapKeyRef:
+                  name: sp-config
+                  key: DB_DATA
+            - name: DS_INIT_MODE
+              valueFrom:
+                configMapKeyRef:
+                  name: sp-config
+                  key: DS_INIT_MODE
+            - name: DB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: sp-config
+                  key: DB_HOST
+            - name: DB_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: sp-config
+                  key: DB_USER
+            - name: DB_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: sp-config
+                  key: DB_NAME
+            - name: CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: sp-secret
+                  key: CLIENT_ID
+          volumeMounts:
+            - name: config
+              mountPath: 'app/resources/config'
+              readOnly: true
+      volumes:
+        - name: config
+          configMap:
+            name: sp-config
+            items:
+              - key: 'schema.sql'
+                path: 'schema.sql'
+              - key: 'data.sql'
+                path: 'data.sql'

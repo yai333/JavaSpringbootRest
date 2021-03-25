@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: sp-config
+data:
+  DS_INIT_MODE: always
+  DB_USER: myuser@my-sp-db-server
+  DB_HOST: jdbc:postgresql://my-sp-db-server.postgres.database.azure.com:5432/my-sp-db?sslmode=require
+  DB_NAME: my-sp-db
+  DB_SCHEMA: config/schema.sql
+  DB_DATA: config/data.sql
+  data.sql: |
+    INSERT INTO "user" (firstName, lastName) SELECT 'William','Ferguson'
+      WHERE
+          NOT EXISTS (
+              SELECT id FROM "user" WHERE firstName = 'William' AND lastName = 'Ferguson'
+      );
+  schema.sql: |
+    DROP TABLE IF EXISTS "user";
+    CREATE TABLE "user"
+    (
+      id SERIAL PRIMARY KEY,
+      firstName VARCHAR(100) NOT NULL,
+      lastName VARCHAR(100) NOT NULL
+    );

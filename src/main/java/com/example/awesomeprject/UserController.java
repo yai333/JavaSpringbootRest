@@ -2,10 +2,8 @@ package com.example.awesomeprject;
 
 import java.util.logging.Logger;
 import java.util.List;
-
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Slice;
-import org.springframework.data.web.PageableDefault;
+import java.util.Map;
+import java.util.Collections;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +21,11 @@ public class UserController {
         this.userRepository = userRepository;
     }
 
+    @GetMapping("/")
+    Map home() {
+		return Collections.singletonMap("response","Hello Docker World");
+	}
+
     @GetMapping("/users/all")
     List<User> findAll() {
         return userRepository.findAll();
@@ -35,12 +38,13 @@ public class UserController {
     }
 
     @PostMapping(value = "user", consumes = "application/json", produces = "application/json")
-    public String addUser(@RequestBody User user) {
+    Map addUser(@RequestBody User user) {
         if (userRepository.existsByFirstNameAndLastName(user.getFirstName(), user.getLastName())) {
-            return "Author or Author ID Already Exists";
+            return Collections.singletonMap("response", "Author or Author ID Already Exists");
+            
         } else {
             userRepository.save(user);
-            return "Created";
+            return Collections.singletonMap("response", "User Created");
         }
     }
 
