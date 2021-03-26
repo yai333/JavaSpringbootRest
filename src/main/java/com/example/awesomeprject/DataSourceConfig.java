@@ -2,6 +2,7 @@ package com.example.awesomeprject;
 
 import javax.sql.DataSource;
 import org.springframework.context.annotation.Bean;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.jdbc.DataSourceBuilder;
@@ -32,6 +33,7 @@ public class DataSourceConfig {
     private String ClientId;
 
     @Bean
+    @RefreshScope
     public DataSource getDataSource() {
 
         DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
